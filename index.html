@@ -1,12 +1,13 @@
-﻿Below are **COPY‑PASTE READY FILES** to create the **SERAPH Sentinel (Access App)**.
+Below is the **FINAL UPDATED VERSION** that uses your **SERAPH logo** and completes **ALL FOUR** items:
 
-This is a **FREE downloadable installable app shell** that launches your Hugging Face SERAPH platform.
-
-You do **not** need coding knowledge beyond copy–paste.
+✔ Full‑screen app mode (no browser feel)
+✔ SERAPH splash screen (using your logo)
+✔ Ready for APK wrapping
+✔ Clean About / Info panel (no clutter)
 
 ---
 
-## FILE 1: `index.html`
+## FILE: `index.html` (REPLACE ENTIRE FILE)
 
 ```html
 <!DOCTYPE html>
@@ -20,8 +21,10 @@ You do **not** need coding knowledge beyond copy–paste.
   <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
 
-  <!-- Theme -->
+  <!-- Full screen / app mode -->
   <meta name="theme-color" content="#0b0f14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
   <style>
     body {
@@ -29,51 +32,49 @@ You do **not** need coding knowledge beyond copy–paste.
       background: #0b0f14;
       color: #e6e6e6;
       font-family: Arial, Helvetica, sans-serif;
+      overflow: hidden;
     }
 
-    .container {
-      min-height: 100vh;
+    /* SPLASH SCREEN */
+    #splash {
+      position: fixed;
+      inset: 0;
+      background: #0b0f14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    #splash img {
+      width: 180px;
+      opacity: 0.95;
+    }
+
+    /* MAIN APP */
+    .app {
+      display: none;
+      height: 100vh;
+      width: 100vw;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 24px;
+      padding: 20px;
     }
 
     h1 {
       font-size: 2.2em;
-      margin-bottom: 8px;
       letter-spacing: 1px;
-    }
-
-    h2 {
-      font-size: 1em;
-      font-weight: normal;
-      opacity: 0.8;
-      margin-bottom: 28px;
-    }
-
-    .card {
-      background: #121821;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 520px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
-    }
-
-    p {
-      line-height: 1.6;
-      font-size: 0.95em;
-      opacity: 0.9;
+      margin-bottom: 20px;
     }
 
     button {
-      margin-top: 20px;
-      padding: 14px 22px;
+      padding: 16px 26px;
       font-size: 1em;
       background: #1f6feb;
-      color: white;
+      color: #fff;
       border: none;
       border-radius: 6px;
       cursor: pointer;
@@ -83,45 +84,97 @@ You do **not** need coding knowledge beyond copy–paste.
       background: #388bfd;
     }
 
-    .footer {
-      margin-top: 30px;
-      font-size: 0.8em;
-      opacity: 0.6;
+    /* INFO BUTTON */
+    .info-btn {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      background: #121821;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      opacity: 0.85;
+    }
+
+    /* INFO MODAL */
+    #info {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 10000;
+    }
+
+    #info .card {
+      background: #121821;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 420px;
+      text-align: left;
+      font-size: 0.9em;
+      line-height: 1.6;
+    }
+
+    #info button {
+      margin-top: 15px;
+      width: 100%;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <!-- SPLASH -->
+  <div id="splash">
+    <img src="SERAPH_CENTERz.jpg" alt="SERAPH Logo" />
+  </div>
 
+  <!-- MAIN APP -->
+  <div class="app" id="app">
     <h1>SERAPH Sentinel</h1>
-    <h2>Military‑Grade Intelligence | Private Security Decisions</h2>
+    <button onclick="launchSeraph()">Launch Intelligence Platform</button>
+  </div>
 
+  <!-- INFO BUTTON -->
+  <div class="info-btn" onclick="openInfo()">i</div>
+
+  <!-- INFO MODAL -->
+  <div id="info">
     <div class="card">
-      <p>
-        SERAPH Sentinel is a secure access application for the SERAPH Intelligence Platform.
-        It applies structured military intelligence analysis to private security, risk assessment,
-        and decision‑making under uncertainty.
-      </p>
-
-      <p>
-        This application provides an installable, professional interface for accessing
-        SERAPH services.
-      </p>
-
-      <button onclick="launchSeraph()">Launch Intelligence Platform</button>
-
-      <p class="footer">
-        This app is a free access shell. Intelligence services may require authorization or subscription.
-      </p>
+      <strong>About SERAPH Sentinel</strong><br><br>
+      SERAPH Sentinel is a free access application for the SERAPH Intelligence Platform.
+      It provides a secure, installable interface for private‑sector intelligence analysis.
+      <br><br>
+      Intelligence services may require authorization or subscription.
+      <button onclick="closeInfo()">Close</button>
     </div>
-
   </div>
 
   <script>
     function launchSeraph() {
       window.location.href = "https://huggingface.co/spaces/Militaryint/seraph";
     }
+
+    function openInfo() {
+      document.getElementById('info').style.display = 'flex';
+    }
+
+    function closeInfo() {
+      document.getElementById('info').style.display = 'none';
+    }
+
+    // Splash timing
+    setTimeout(() => {
+      document.getElementById('splash').style.display = 'none';
+      document.getElementById('app').style.display = 'flex';
+    }, 2000);
 
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js');
@@ -134,90 +187,33 @@ You do **not** need coding knowledge beyond copy–paste.
 
 ---
 
-## FILE 2: `manifest.json`
+## IMPORTANT
 
-```json
-{
-  "name": "SERAPH Sentinel",
-  "short_name": "SERAPH",
-  "start_url": "index.html",
-  "display": "standalone",
-  "background_color": "#0b0f14",
-  "theme_color": "#0b0f14",
-  "description": "Secure access app for the SERAPH Intelligence Platform.",
-  "icons": []
-}
+Place your logo image in the SAME folder as `index.html` with this exact name:
+
+```
+SERAPH_CENTERz.jpg
 ```
 
----
-
-## FILE 3: `service-worker.js`
-
-```javascript
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open('seraph-cache').then(cache => {
-      return cache.addAll([
-        './',
-        './index.html'
-      ]);
-    })
-  );
-});
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
-  );
-});
-```
+(Use the image you just uploaded — do not rename case differently.)
 
 ---
 
-## HOW TO USE (NO EXPERIENCE REQUIRED)
+## RESULT
 
-1. Create a folder on your computer:
-   `seraph-app`
-
-2. Inside it, create **three files**:
-
-   * `index.html`
-   * `manifest.json`
-   * `service-worker.js`
-
-3. Paste the content exactly as shown above.
-
-4. Upload the folder to **GitHub Pages / Netlify / Cloudflare Pages**.
-
-5. Open the site in Chrome → **Install App**.
+✔ No top/bottom clutter
+✔ Full‑screen app feel
+✔ Professional splash screen
+✔ Clean info panel
+✔ Perfect for APK WebView wrapping
 
 ---
 
-## WHAT THIS GIVES YOU
+Next steps available:
+1️⃣ Match Android splash screen to this design
+2️⃣ Add SERAPH app icon for APK
+3️⃣ Lock orientation / disable zoom
+4️⃣ Harden WebView security
 
-✔ Installable app (Android / Windows / macOS)
-✔ Always free shell
-✔ Paid SERAPH engine untouched
-✔ No store lock‑in
-✔ Professional intelligence branding
+Say the number.
 
----
-
-## COMPANY BRANDING (FINAL)
-
-**Company:** SERAPH
-**App:** SERAPH Sentinel (Access App)
-**Tagline:** Intelligence for Protection, Not Power
-
----
-
-If you want next:
-
-* Android APK wrapper
-* Logo & splash text
-* Legal / ToS wording
-* Military‑grade UI polish
-
-Just say the number.
