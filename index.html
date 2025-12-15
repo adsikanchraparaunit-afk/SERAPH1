@@ -35,12 +35,122 @@
     }
 
     #splash img {
-      width: 180px;
+      width: 190px;
       opacity: 0.95;
     }
 
     /* MAIN APP */
     .app {
-      display: none; /* ONLY none here */
+      display: none;
       height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 26px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 2.4em;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .tagline {
+      font-size: 1.05em;
+      font-style: italic;
+      opacity: 0.85;
+      margin-bottom: 28px;
+      max-width: 520px;
+    }
+
+    button {
+      padding: 16px 30px;
+      font-size: 1.05em;
+      background: #1f6feb;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 30px;
+    }
+
+    button:hover {
+      background: #388bfd;
+    }
+
+    .details {
+      max-width: 640px;
+      font-size: 0.95em;
+      line-height: 1.65;
+      opacity: 0.9;
+    }
+
+    .details strong {
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SPLASH -->
+  <div id="splash">
+    <img src="SERAPH_CENTERz.jpg" alt="SERAPH Logo" />
+  </div>
+
+  <!-- MAIN APP -->
+  <div class="app" id="app">
+    <h1>SERAPH Sentinel</h1>
+
+    <div class="tagline">
+      Intelligence that removes uncertainty before risk becomes reality.
+    </div>
+
+    <button onclick="launchSeraph()">Launch Intelligence Platform</button>
+
+    <div class="details">
+      <strong>About SERAPH Sentinel</strong><br><br>
+
+      SERAPH Sentinel is a secure access application for the SERAPH Intelligence Platform,
+      designed for the private security and risk management domain.
+      <br><br>
+
+      The platform applies structured intelligence analysis principles to assist
+      decision-makers operating in uncertain, ambiguous, and high-risk environments.
+      <br><br>
+
+      SERAPH does not replace human judgment — it enhances it by transforming fragmented
+      information into actionable intelligence.
+      <br><br>
+
+      Certain intelligence services may require authorization or subscription through
+      the primary platform.
+      <br>
+
+      All rights belong to Dr Patrick Linnenbank SPG
+    </div>
+  </div>
+
+  <script>
+    function launchSeraph() {
+      window.location.href = "https://huggingface.co/spaces/Militaryint/seraph";
+    }
+
+    // Splash timing
+    setTimeout(() => {
+      document.getElementById('splash').style.display = 'none';
+      document.getElementById('app').style.display = 'flex';
+    }, 2200);
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+
+</body>
+</html>
 
