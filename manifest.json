@@ -1,0 +1,10 @@
+﻿{
+"name": "SERAPH Sentinel",
+"short_name": "SERAPH",
+"start_url": "index.html",
+"display": "standalone",
+"background_color": "#0b0f14",
+"theme_color": "#0b0f14",
+"description": "Secure access app for the SERAPH Intelligence Platform.",
+"icons": []
+}
